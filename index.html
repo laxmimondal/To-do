@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Modern TO-DO List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="todo-container">
+      <div id="header">
+        <h1>📝 To Do List</h1>
+        <button id="dark-mode-toggle">🌙 Dark Mode</button>
+      </div>
+
+      <div id="todo-form">
+        <input
+  type="text"
+  class="input-item"
+  name="input_box"
+  id="input-box"
+  placeholder="Add a new task..."
+/>
+
+<div id="due-date-toggle">
+  <input type="checkbox" id="enable-due-date" />
+  <label for="enable-due-date">Add Deadline</label>
+</div>
+
+<input type="date" id="due-date" class="input-item" style="display: none" />
+
+<button id="input-button" onclick="addTask()">Add</button>
+
+
+      </div>
+
+      <h2>Task List</h2>
+      <ul id="list-container"></ul>
+
+      <hr />
+      <div class="counter-container">
+        Completed: <span id="completed-counter">0</span> |
+        Uncompleted: <span id="uncompleted-counter">0</span>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
