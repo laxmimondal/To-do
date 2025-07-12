@@ -3,9 +3,22 @@
   <head>
     <title>Modern TO-DO List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <!-- Animated Background -->
+    <div class="animated-background">
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+      <div class="floating-shape"></div>
+      <div class="gradient-orb"></div>
+      <div class="gradient-orb"></div>
+      <div class="gradient-orb"></div>
+    </div>
+
     <div id="todo-container">
       <div id="header">
         <h1>📝 To Do List</h1>
@@ -14,23 +27,21 @@
 
       <div id="todo-form">
         <input
-  type="text"
-  class="input-item"
-  name="input_box"
-  id="input-box"
-  placeholder="Add a new task..."
-/>
+          type="text"
+          class="input-item"
+          name="input_box"
+          id="input-box"
+          placeholder="Add a new task..."
+        />
 
-<div id="due-date-toggle">
-  <input type="checkbox" id="enable-due-date" />
-  <label for="enable-due-date">Add Deadline</label>
-</div>
+        <div id="due-date-toggle">
+          <input type="checkbox" id="enable-due-date" />
+          <label for="enable-due-date">Add Deadline</label>
+        </div>
 
-<input type="date" id="due-date" class="input-item" style="display: none" />
+        <input type="date" id="due-date" class="input-item" style="display: none" />
 
-<button id="input-button" onclick="addTask()">Add</button>
-
-
+        <button id="input-button" onclick="addTask()">Add</button>
       </div>
 
       <h2>Task List</h2>
@@ -43,6 +54,8 @@
       </div>
     </div>
 
+  
     <script src="script.js"></script>
+
   </body>
 </html>
