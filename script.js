@@ -1,3 +1,4 @@
+
 const inputBox = document.getElementById("input-box");
 const dueDate = document.getElementById("due-date");
 const inputBtn = document.getElementById("input-button");
@@ -6,15 +7,12 @@ const completedCounter = document.getElementById("completed-counter");
 const uncompletedCounter = document.getElementById("uncompleted-counter");
 const darkToggle = document.getElementById("dark-mode-toggle");
 
-let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-let darkMode = localStorage.getItem("darkMode") === "true";
-
-if (darkMode) {
-    document.body.classList.add("dark");
-}
+let tasks = [];
+let darkMode = false;
 
 function saveTasks() {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    // Tasks are stored in memory during the session
+    console.log("Tasks saved to memory:", tasks);
 }
 
 function renderTasks() {
@@ -28,9 +26,9 @@ function renderTasks() {
         const taskInfo = document.createElement("div");
         taskInfo.className = "task-info";
         taskInfo.innerHTML = `
-      <strong>${task.text}</strong>
-      <div class="task-due">${task.date ? "Due: " + task.date : ""}</div>
-    `;
+            <strong>${task.text}</strong>
+            <div class="task-due">${task.date ? "Due: " + task.date : ""}</div>
+          `;
 
         const actions = document.createElement("div");
         actions.className = "task-actions";
@@ -80,7 +78,7 @@ function renderTasks() {
     uncompletedCounter.textContent = tasks.length - completed;
 }
 
-inputBtn.onclick = () => {
+function addTask() {
     const text = inputBox.value.trim();
     const date = dueDate.value;
     if (text === "") return alert("Please enter a task.");
@@ -90,31 +88,26 @@ inputBtn.onclick = () => {
     dueDate.value = "";
     saveTasks();
     renderTasks();
-};
+}
 
-darkToggle.onclick = () => {
-    document.body.classList.toggle("dark");
-    localStorage.setItem("darkMode", document.body.classList.contains("dark"));
-};
-document.getElementById('enable-due-date').addEventListener('change', function () {
-    const dateInput = document.getElementById('due-date');
-    if (this.checked) {
-        dateInput.style.display = 'block';
+inputBtn.onclick = addTask;
 
-        const today = new Date().toISOString().split("T")[0];
-        dateInput.setAttribute("min", today);
-        dateInput.value = today;
-    } else {
-        dateInput.style.display = 'none';
-        dateInput.value = "";
+inputBox.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        addTask();
     }
 });
 
+darkToggle.onclick = () => {
+    document.body.classList.toggle("dark");
+    darkMode = document.body.classList.contains("dark");
+    darkToggle.textContent = darkMode ? "☀️ Light Mode" : "🌙 Dark Mode";
+};
+
 document.getElementById('enable-due-date').addEventListener('change', function () {
     const dateInput = document.getElementById('due-date');
     if (this.checked) {
         dateInput.style.display = 'block';
-
         const today = new Date().toISOString().split("T")[0];
         dateInput.setAttribute("min", today);
         dateInput.value = today;
